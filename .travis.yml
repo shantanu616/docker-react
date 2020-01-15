@@ -1,0 +1,21 @@
+language: generic
+sudo : required
+services:
+  - docker
+before_install:
+  - docker build -t  shantanu616/docker-react -f Dockerfile.dev .
+script:
+  - echo "skipping tests"
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "planetcast"
+  env: "Planetcast-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-345585313768"
+  bucket_path: "planetcast"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"

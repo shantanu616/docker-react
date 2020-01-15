@@ -1,0 +1,11 @@
+version: "3"
+services:
+  mywebsite:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3003:3000"
+    volumes:
+      - /reactwork/node_modules
+      - .:/reactwork
